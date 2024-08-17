@@ -1,4 +1,4 @@
-// Functions responsible for drawing on canvas
+﻿// Functions responsible for drawing on canvas
 
 game.drawTile = function (tileColumn, tileRow, x, y) {
 	game.context.drawImage(
@@ -77,6 +77,13 @@ game.redraw = function () {
 	game.drawPlayer()
 
 	game.counter.innerHTML = "A game by Karol Swierczek | Controls: A, D / arrows and SPACE | Points: " + Math.round(-game.player.highestY / (3 * game.options.tileHeight)), game.canvas.width - 50, game.canvas.height - 12
+
+	//Display points
+	game.context.font = "20px Arial";
+	game.context.fillStyle = "white";
+	game.context.textAlign = "left";
+	game.context.fillText("Điểm số: " + game.score, 10, 30);
+
 }
 
 game.requestRedraw = function () {
@@ -92,6 +99,13 @@ game.requestRedraw = function () {
 		game.context.fillStyle = "black"
 		game.context.fillText("Game over!", game.canvas.width / 2, game.canvas.height / 2)
 		game.context.font = "15px Georgia"
+		game.context.fillText("Điểm số: " + game.score, game.canvas.width / 2, game.canvas.height / 2 + 30)
 		game.context.fillText("(Refresh the page to restart)", game.canvas.width / 2, game.canvas.height / 2 + 50)
 	}
 }
+
+game.score = 0;
+game.updateScore = function (points) {
+	game.score += points;
+}
+
