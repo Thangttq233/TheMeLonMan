@@ -20,6 +20,15 @@ game.structures = {
 			{tileColumn: 6, tileRow: 1, x: -1, y: -0.9, collidable: false},{tileColumn: 7, tileRow: 1, x: 0, y: -0.9, collidable: false}, {tileColumn: 8, tileRow: 1, x: 1, y: -0.9, collidable: false},
 			{tileColumn: 0, tileRow: 4, x: -1, y: 0},{tileColumn: 1, tileRow: 4, x: 0, y: 0}, {tileColumn: 2, tileRow: 4, x: 1, y: 0},
 			{tileColumn: 0, tileRow: 5, x: -1, y: 1, collidable: false},{tileColumn: 1, tileRow: 5, x: 0, y: 1, collidable: false}, {tileColumn: 2, tileRow: 5, x: 1, y: 1, collidable: false}
+	],
+  // volcanoPlatform
+	"volcanoPlatform": [
+		{ tileColumn: 6, tileRow: 2, x: 0, y: 0 },
+		{ tileColumn: 7, tileRow: 2, x: 1, y: 0 },
+		{ tileColumn: 8, tileRow: 2, x: 2, y: 0 },
+		{ tileColumn: 6, tileRow: 3, x: 0, y: 1 },
+		{ tileColumn: 7, tileRow: 3, x: 1, y: 1 },
+		{ tileColumn: 8, tileRow: 3, x: 2, y: 1 }
 	]
 }
 
@@ -91,6 +100,14 @@ game.generateMap = function () {
 	for (var i = 120; i < 140; i++) {
 		this.map.structures.push({
 			name: "lava_platform",
+			x: Math.floor(Math.random() * 8),
+			y: -i * 3
+		})
+	}
+	// Add volcano platform
+	for (var i = 140; i < 160; i++) {
+		this.map.structures.push({
+			name: "volcanoPlatform",
 			x: Math.floor(Math.random() * 8),
 			y: -i * 3
 		})
