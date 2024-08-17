@@ -7,6 +7,8 @@
 	isInAir: false,
 	startedJump: false,
 	moveInterval: null,
+	canDoubleJump: false,
+	jumpCount: 0,
 	fallTimeout: function (startingY, time, maxHeight) {
 		setTimeout(function () {
 			if (this.isInAir) {
@@ -44,6 +46,7 @@
 			game.sounds.jump.play()
 			this.isInAir = true
 			this.startedJump = true
+			this.jumpCount++;
 			var startingY = this.y
 			var time = 1
 			maxHeight = 121
@@ -56,7 +59,18 @@
 				game.updateScore(10);
 			}
 			this.fallTimeout(startingY, time, maxHeight)
+
+			if (this.jumpCount == 2) {
+				this.canDoubleJump = false;
+			}
+		}
+	},
+	land: function () {
+		if (this.isInAir) {
+			this.isInAir = false;
+			this.jumpCount = 0; // Đặt lại số lần nhảy khi chạm đất
+			this.canDoubleJump = true; // Cho phép double jump khi chạm đất
 		}
 	}
-}
+};
 
